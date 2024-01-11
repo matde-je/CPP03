@@ -20,6 +20,31 @@ ClapTrap::~ClapTrap(void)
     return ;
 }
 
+ClapTrap::ClapTrap(const ClapTrap& src)
+{
+    std::cout << "Copy constructor called" << std::endl;
+    *this = src;
+    return ;
+}
+
+ClapTrap& ClapTrap::operator=(const ClapTrap& src)
+{
+    std::cout << "Assignment operator called" << std::endl;
+    if (this != &src)
+    {
+        this->name = src.name;
+        this->hitPoints = src.hitPoints;
+        this->energyPoints = src.energyPoints;
+        this->attackDamage = src.attackDamage;
+    }
+    return (*this);
+}
+
+
+
+
+
+
 //When ClapTrack attacks, it causes its target to lose <attack damage> hit points
 //cost 1 energy point each. ClapTrap can’t do anything if it has no hit points or energy points left
 void ClapTrap::attack(const std::string& target)

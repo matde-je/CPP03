@@ -19,6 +19,30 @@ FragTrap::~FragTrap(void)
     return ;
 }
 
+FragTrap::FragTrap(const FragTrap& src)
+{
+    std::cout << "Copy constructor called" << std::endl;
+    *this = src;
+    return ;
+}
+
+FragTrap& FragTrap::operator=(const FragTrap& src)
+{
+    std::cout << "Assignment operator called" << std::endl;
+    if (this != &src)
+    {
+        this->name = src.name;
+        this->hitPoints = src.hitPoints;
+        this->energyPoints = src.energyPoints;
+        this->attackDamage = src.attackDamage;
+    }
+    return (*this);
+}
+
+
+
+
+
 //This member function displays a positive high fives request on the standard output
 void FragTrap::highFivesGuys(void)
 {

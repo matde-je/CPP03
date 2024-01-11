@@ -19,6 +19,30 @@ ScavTrap::~ScavTrap(void)
     return ;
 }
 
+ScavTrap::ScavTrap(const ScavTrap& src)
+{
+    std::cout << "Copy constructor called" << std::endl;
+    *this = src;
+    return ;
+}
+
+ScavTrap& ScavTrap::operator=(const ScavTrap& src)
+{
+    std::cout << "Assignment operator called" << std::endl;
+    if (this != &src)
+    {
+        this->name = src.name;
+        this->hitPoints = src.hitPoints;
+        this->energyPoints = src.energyPoints;
+        this->attackDamage = src.attackDamage;
+    }
+    return (*this);
+}
+
+
+
+
+
 void ScavTrap::guardGate()
 {
     std::cout << "Scavtrap " << name << " is in gate keeper mode" << std::endl;
