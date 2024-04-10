@@ -4,49 +4,37 @@
 FragTrap::FragTrap(std::string name): ClapTrap(name, 100, 100, 30)
 {
     std::cout << "Fragtrap name constructor called" << std::endl;
-    return ;
 }
 
 FragTrap::FragTrap(void): ClapTrap("FragTrap", 100, 100, 30)
 {
     std::cout << "Fragtrap constructor called" << std::endl;
-    return ;
 }
 
 FragTrap::~FragTrap(void)
 {
     std::cout << "Fragtrap destructor called" << std::endl;
-    return ;
 }
 
-FragTrap::FragTrap(const FragTrap& src)
+FragTrap::FragTrap(const FragTrap& copy): ClapTrap(copy)
 {
-    std::cout << "Copy constructor called" << std::endl;
-    *this = src;
-    return ;
+    std::cout << "Fragtrap copy constructor called" << std::endl;
 }
 
-FragTrap& FragTrap::operator=(const FragTrap& src)
+FragTrap& FragTrap::operator=(const FragTrap& copy)
 {
     std::cout << "Assignment operator called" << std::endl;
-    if (this != &src)
-    {
-        this->name = src.name;
-        this->hitPoints = src.hitPoints;
-        this->energyPoints = src.energyPoints;
-        this->attackDamage = src.attackDamage;
-    }
+    this->name = copy.name;
+    this->hitPoints = copy.hitPoints;
+    this->energyPoints = copy.energyPoints;
+    this->attackDamage = copy.attackDamage;
     return (*this);
 }
-
-
-
-
 
 //This member function displays a positive high fives request on the standard output
 void FragTrap::highFivesGuys(void)
 {
-    std::cout << "Fragtrap " << name<< " positive high fives" << std::endl;
+    std::cout << "Fragtrap " << name << " positive high fives" << std::endl;
 }
 
 void FragTrap::attack(const std::string& target)
@@ -57,9 +45,8 @@ void FragTrap::attack(const std::string& target)
         this->energyPoints -= 1;
         return ;
     }
-    if (this->energyPoints <= 0)
-        std::cout << "FragTrap" << this->name << " couldnt attack since it doesnt have any more energy left" << std::endl;
+    else if (this->energyPoints <= 0)
+        std::cout << "FragTrap" << this->name << " couldnt attack because it doesnt have energy " << std::endl;
     if (this->hitPoints <= 0)
-        std::cout << "FragTrap" << this->name << " couldnt attack since it doesnt have any more hitpoints left" << std::endl;
-    return ;
+        std::cout << "FragTrap" << this->name << " couldnt attack because it doesnt have hitpoints " << std::endl;
 }

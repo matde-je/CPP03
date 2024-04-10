@@ -4,44 +4,32 @@
 ScavTrap::ScavTrap(std::string name): ClapTrap(name, 100, 50, 20)
 {
     std::cout << "Scavtrap name constructor called" << std::endl;
-    return ;
 }
 
 ScavTrap::ScavTrap(void): ClapTrap("ScavTrap", 100, 50, 20)
 {
     std::cout << "Scavtrap constructor called" << std::endl;
-    return ;
 }
 
 ScavTrap::~ScavTrap(void)
 {
     std::cout << "Scavtrap destructor called" << std::endl;
-    return ;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& src)
+ScavTrap::ScavTrap(const ScavTrap& copy): ClapTrap(copy)
 {
-    std::cout << "Copy constructor called" << std::endl;
-    *this = src;
-    return ;
+    std::cout << "Scavtrap copy constructor called" << std::endl;
 }
 
-ScavTrap& ScavTrap::operator=(const ScavTrap& src)
+ScavTrap& ScavTrap::operator=(const ScavTrap& copy)
 {
     std::cout << "Assignment operator called" << std::endl;
-    if (this != &src)
-    {
-        this->name = src.name;
-        this->hitPoints = src.hitPoints;
-        this->energyPoints = src.energyPoints;
-        this->attackDamage = src.attackDamage;
-    }
+    this->name = copy.name;
+    this->hitPoints = copy.hitPoints;
+    this->energyPoints = copy.energyPoints;
+    this->attackDamage = copy.attackDamage;
     return (*this);
 }
-
-
-
-
 
 void ScavTrap::guardGate()
 {
@@ -57,9 +45,8 @@ void ScavTrap::attack(const std::string& target)
         this->energyPoints -= 1;
         return ;
     }
-    if (this->energyPoints <= 0)
-        std::cout << "ScavTrap" << this->name << " couldnt attack since it doesnt have any more energy left" << std::endl;
+    else if (this->energyPoints <= 0)
+        std::cout << "ScavTrap" << this->name << " cant attack because it doesnt have energy" << std::endl;
     if (this->hitPoints <= 0)
-        std::cout << "ScavTrap" << this->name << " couldnt attack since it doesnt have any more hitpoints left" << std::endl;
-    return ;
+        std::cout << "ScavTrap" << this->name << " cant attack because it doesnt have hitpoints" << std::endl;
 }

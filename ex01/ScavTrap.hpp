@@ -14,8 +14,8 @@ class ScavTrap : public ClapTrap
 		ScavTrap(void);
 		ScavTrap(std::string name);
 		~ScavTrap(void);
-		ScavTrap(const ScavTrap& src);
-		ScavTrap& operator=(const ScavTrap& src);
+		ScavTrap(const ScavTrap& copy);
+		ScavTrap& operator=(const ScavTrap& copy);
 
         void guardGate();
         void attack(const std::string& target);
